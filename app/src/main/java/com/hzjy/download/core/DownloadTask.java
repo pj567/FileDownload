@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import com.hzjy.download.entity.DownLoadEntity;
 import com.hzjy.download.util.BufferedRandomAccessFile;
 import com.hzjy.download.util.CommonUtil;
-import com.hzjy.download.util.L;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -136,8 +135,10 @@ public class DownloadTask extends AbsTask implements ITask {
                     file.seek(startLength);
                     send(IEventListener.START, startLength);
                     readNormal(is, file, startLength);
+                } else if (contentLength == startLength) {
+                    send(IEventListener.COMPLETE, startLength);
                 } else {
-                    send(IEventListener.COMPLETE, -1);
+                    fail(IEventListener.FAIL, "文件大小异常");
                 }
             } else {
                 fail(IEventListener.FAIL, "连接失败");
@@ -179,7 +180,7 @@ public class DownloadTask extends AbsTask implements ITask {
         if (!isLive()) {
             send(IEventListener.STOP, curr);
         } else {
-            send(IEventListener.COMPLETE, -1);
+            send(IEventListener.COMPLETE, curr);
         }
     }
 

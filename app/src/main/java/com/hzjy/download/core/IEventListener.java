@@ -15,22 +15,28 @@ public interface IEventListener {
 
     /**
      * 预处理，有时有些地址链接比较慢，这时可以先在这个地方出来一些界面上的UI，如按钮的状态
+     * @param task
+     * @param length 文件总大小
      */
     void onPre(DownloadTask task, long length);
 
     /**
-     * 开始
+     *  开始
+     * @param task
+     * @param location 开始下载位置
      */
     void onStart(DownloadTask task, long location);
 
 
     /**
      * 下载监听
+     * @param location 下载完成长度
      */
     void onProgress(DownloadTask task, long location);
 
     /**
      * 停止
+     *
      */
     void onStop(DownloadTask task, long location);
 
