@@ -1,14 +1,14 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
+
     defaultConfig {
-        applicationId "com.hzjy.downloads"
         minSdkVersion 18
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
+
     }
     buildTypes {
         release {
@@ -19,8 +19,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'me.jessyan:autosize:1.1.2'
-    compile project(':download')
+    compile 'com.j256.ormlite:ormlite-android:5.1'
 }
