@@ -47,7 +47,16 @@ public class DownloadTaskManager implements Handler.Callback {
                 if (entity.getStatus() == DownloadStatus.UPDATE
                         || entity.getStatus() == DownloadStatus.WAIT
                         || entity.getStatus() == DownloadStatus.PAUSE) {
-                    entity.setStatus(DownloadStatus.PAUSE);
+                    if (entity.isRange()) {
+                        entity.setStatus(DownloadStatus.PAUSE);
+                    } else {
+                        entity.setStatus(DownloadStatus.IDLE);
+                        entity.reset();
+                        File file = new File(entity.getFilePath() + entity.getFileName());
+                        if (file.exists()) {
+                            file.delete();
+                        }
+                    }
                     addDownload(entity);
                 }
                 mDataChanger.addToOperatedEntryMap(entity.getId(), entity);

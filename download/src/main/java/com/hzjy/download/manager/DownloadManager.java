@@ -5,7 +5,6 @@ import android.content.Context;
 import com.hzjy.download.DataChanger;
 import com.hzjy.download.DataWatcher;
 import com.hzjy.download.DownloadEntity;
-import com.hzjy.download.DownloadTarget;
 
 /**
  * pj567

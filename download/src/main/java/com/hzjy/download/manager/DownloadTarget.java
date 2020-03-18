@@ -1,8 +1,8 @@
-package com.hzjy.download;
+package com.hzjy.download.manager;
 
 import android.content.Context;
 
-import com.hzjy.download.manager.DownloadTaskManager;
+import com.hzjy.download.DownloadEntity;
 import com.hzjy.download.util.CommonUtil;
 import com.hzjy.download.util.Constants;
 
@@ -13,7 +13,6 @@ import com.hzjy.download.util.Constants;
 
 public class DownloadTarget {
     private DownloadEntity entity;
-    public Context mContext;
     public DownloadTarget(DownloadEntity entity) {
         this.entity = entity;
     }
